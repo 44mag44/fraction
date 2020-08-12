@@ -1,0 +1,2 @@
+all:
+	gcc -Wall -o run.out main.c summa.c
