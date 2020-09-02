@@ -1,5 +1,5 @@
 /* SUMMA.C */
-/*******************************************************************************/
+
 #include <stdio.h>
 
 // Для левого и правого выражения
@@ -13,13 +13,15 @@ struct right
 	int c;
 	int d;
 } r;
+
 // одинаковые знаменатели
-extern int same_denominators(int b, int d) 
+int same_denominators(int b, int d) 
 {
 	l.b=b;
 	r.d=d;
 	return (l.b==r.d);
 }
+
 // сумма
 int summa()
 {
@@ -47,4 +49,3 @@ int summa()
 
 	return ac;
 }
-/*******************************************************************************/
