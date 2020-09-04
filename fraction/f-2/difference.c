@@ -1,4 +1,4 @@
-/* SUMMA_C */
+/* DIFFERENCE_C */
 #include <stdio.h>
 
 #include "header/nok.h"
@@ -18,7 +18,7 @@ struct right
 } r;
 
 // сумма
-int summa()
+int difference()
 {
 	l.a=0, l.b=0;
 	r.c=0, r.d=0;
@@ -51,21 +51,35 @@ int summa()
 		return 0;
 	}
 
-	int ac=l.a+r.c; // сумма числителей 
-	int nok=0;
-	int nod=0;
+	// разность числителей 
+	int ac=0;
+
+	if(l.a>r.c)
+		ac=l.a-r.c;
+	if(l.a<r.c)
+	{
+		ac=r.c-l.a;
+		ac=-ac;
+	}
+	if(l.a==r.c)
+	{
+		printf("\n0 или бесконечность\n");
+		return 0;
+	}	
 
 	// NOK
-	nok=NOK(l.b, r.d);
+	int nok=0;
+	nok=NOK(l.b, r.d);	
 	
 	// NOD
 	int a=0,b=0;
+	int nod=0;
 
 	a=ac;
 	b=nok;
 	nod=NOD(a, b);
 
-	printf("\nСумма: %d/%d\n", a/=nod, b/=nod);
+	printf("\nРазность: %d/%d\n", a/=nod, b/=nod);
 
 	return nok;
 }

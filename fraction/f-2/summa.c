@@ -1,4 +1,4 @@
-/* SUMMA_C */
+/* MULTIPLICATION_C */
 #include <stdio.h>
 
 #include "header/nok.h"

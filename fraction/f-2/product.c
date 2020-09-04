@@ -1,7 +1,6 @@
 /* SUMMA_C */
 #include <stdio.h>
 
-#include "header/nok.h"
 #include "header/nod.h"
 
 // Для левого и правого выражения
@@ -18,7 +17,7 @@ struct right
 } r;
 
 // сумма
-int summa()
+int product()
 {
 	l.a=0, l.b=0;
 	r.c=0, r.d=0;
@@ -51,21 +50,14 @@ int summa()
 		return 0;
 	}
 
-	int ac=l.a+r.c; // сумма числителей 
-	int nok=0;
+	int ac=l.a*r.c; // произведение числителей
+	int bd=l.b*r.d; // произведение знаменателей 
 	int nod=0;
 
-	// NOK
-	nok=NOK(l.b, r.d);
-	
 	// NOD
-	int a=0,b=0;
+	nod=NOD(ac, bd);
 
-	a=ac;
-	b=nok;
-	nod=NOD(a, b);
+	printf("\nСумма: %d/%d\n", ac/=nod, bd/=nod);
 
-	printf("\nСумма: %d/%d\n", a/=nod, b/=nod);
-
-	return nok;
+	return nod;
 }

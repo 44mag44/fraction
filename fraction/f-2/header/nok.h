@@ -1,4 +1,4 @@
 /* DECOMPOSITION_NUMBER.H */
 #pragma once
 
-int NOD(int, int);
+int NOK(int, int);
