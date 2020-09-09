@@ -1,11 +1,11 @@
 /* MAIN.C */
 #include <stdio.h>
 
-#include "header/summa.h"		// сумма
-#include "header/difference.h"	// разность
-#include "header/product.h"		// произведение
-#include "header/quotient.h"		// частное
-
+#include "header/summa.h"					// сумма
+#include "header/difference.h"				// разность
+#include "header/product.h"					// произведение
+#include "header/quotient.h"					// частное
+#include "header/decimal_inversion.h"	// обращение дробей
 int main() 
 {
 	// меню
@@ -16,6 +16,7 @@ int main()
 	printf("- 2. Вычетание дробей\n");
 	printf("- 3. Умножение дробей\n");
 	printf("- 4. Деление дробей\n");
+	printf("- 5. Обращение дробей\n");
 
 	// выбор пункта меню
 	int number=0;
@@ -31,6 +32,8 @@ int main()
 		case 3: product();
 			break;
 		case 4: quotient();
+			break;
+		case 5: decimal_inversion();
 			break;
 		default:
 			printf ("Нет такого пункта\n");

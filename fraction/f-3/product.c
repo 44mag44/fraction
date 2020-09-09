@@ -16,7 +16,7 @@ struct right
 	int d;
 } r;
 
-// умножение
+// произведение
 int product()
 {
 	l.a=0, l.b=0;
@@ -50,14 +50,28 @@ int product()
 		return 0;
 	}
 
-	int ac=l.a*r.c; // произведение числителей
-	int bd=l.b*r.d; // произведение знаменателей 
+	int ac=0; // числители
+	int bd=0; //знаменатели 
 	int nod=0;
+	float aNOD=0, bNOD=0;	// НОД переменных a и b
+	float decimal=0;	// десятичная	дробь
+
+	// произведение
+	ac=l.a*r.c;	// числителей
+	bd=l.b*r.d;	// знаменателей
 
 	// NOD
 	nod=NOD(ac, bd);
 
-	printf("\nСумма: %d/%d\n", ac/=nod, bd/=nod);
+	// сокращаем aс, bd
+	aNOD=ac/nod;
+	bNOD=bd/nod;
 
-	return nod;
+	// десятичная дробь
+	decimal=aNOD/bNOD;
+
+	// вывод на экран
+	printf("\nПроизведение: %0.0f/%0.0f = %f\n", aNOD, bNOD, decimal);
+
+	return 0;
 }

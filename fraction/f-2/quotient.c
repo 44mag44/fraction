@@ -16,7 +16,7 @@ struct right
 	int d;
 } r;
 
-// сумма
+// деление 
 int quotient()
 {
 	l.a=0, l.b=0;

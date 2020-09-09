@@ -1,4 +1,4 @@
-/* PRODUCT_C */
+/* QUOTIENT_C */
 #include <stdio.h>
 
 #include "header/nod.h"
@@ -16,8 +16,8 @@ struct right
 	int d;
 } r;
 
-// умножение
-int product()
+// частное 
+int quotient()
 {
 	l.a=0, l.b=0;
 	r.c=0, r.d=0;
@@ -50,14 +50,28 @@ int product()
 		return 0;
 	}
 
-	int ac=l.a*r.c; // произведение числителей
-	int bd=l.b*r.d; // произведение знаменателей 
+	int ad=0; // числители
+	int bc=0; // знаменатели 
 	int nod=0;
+	float aNOD=0, bNOD=0;	// НОД переменных a и b
+	float decimal=0;	// десятичная	дробь
+
+	// произведение
+	ad=l.a*r.d;	// числителей
+	bc=l.b*r.c;	// знаменателей
 
 	// NOD
-	nod=NOD(ac, bd);
+	nod=NOD(ad, bc);
 
-	printf("\nСумма: %d/%d\n", ac/=nod, bd/=nod);
+	// сокращаем ad, bc
+	aNOD=ad/nod;
+	bNOD=bc/nod;
 
-	return nod;
+	// десятичная дробь
+	decimal=aNOD/bNOD;
+
+	// вывод на экран
+	printf("\nЧастное: %0.0f/%0.0f = %f\n", aNOD, bNOD, decimal);
+
+	return 0;
 }
