@@ -10,7 +10,7 @@ struct fraction
 	int b;
 } frac;
 
-// ф-я дроби
+// перевод обыкновенной дроби в десятичную
 int fraction()
 {
 	frac.a=0, frac.b=0;
@@ -50,44 +50,115 @@ int fraction()
 	return decimal;
 }
 
-// ф-я возведение в степень
-int koff(int k, int tenth)
+// возведение в степень
+int koff(int size)
 {
-	int res=1;
-	
-	for(; k>0; k--)
-		return res*=tenth;
-	return 0;
+	int tenth=10;
+	int a = 1;
+	while(size)
+	{
+		if(size%2)
+		{
+			a*=tenth;
+			size--;
+		}
+		else
+		{  
+			tenth*=tenth;
+			size/=2;    
+		}
+	}
+
+	return a;
 }
 
-// ф--я десятичная дробь
+// вычисление кол-ва символов
+int size_fractional(int num)
+{
+	int count=0;
+
+	(num == 0) ? count=1 : count;
+
+	while (num != 0)
+	{
+		count++;
+		num /= 10;
+	}
+
+	return count;
+}
+
+// перевод десятичной дроби в обыкновенную
 int decimal()
 {
 	printf("_\n");
 
-	float decimal=0;
-	//float a=0;
-//	int b=0;
-	int k=1;	// степень
-	int tenth=10;	// десятая часть
+	int whole=0;	// целая часть 
+	char ch='.';	// знак дроби	
+	int frac=0; 	// дробная часть
 
-	printf("Десятичная дробь:\n");
-	scanf("%f", &decimal);
+	printf("Десятичная дробь: ");
+
+	scanf("%d", &whole);
+	if(whole<0)
+		return 0;
+
+	scanf("%c", &ch);
+	if(!ch)
+		return 0;
 	
-	while(decimal/tenth==0)
-	{
-		decimal*=tenth;
-		k+=1;
-	}
-		
-	printf("\nДробь: %f/%d\n", decimal, koff(k, tenth));
+	scanf("%d", &frac);
+	if(frac<0)
+		return 0;
 	
+	int size=0;	// разиер долей
+	int a=0;		// числитель	
+	int b=0;		// знаменатель
+
+	size=size_fractional(frac);
+	a=frac;
+	b=koff(size);
+
+	// nod
+	int nod;
+	int aNOD=0;
+	int bNOD=0;
+	
+	nod=NOD(a, b);
+
+	// сокращаем a, b
+	aNOD=a/nod;
+	bNOD=b/nod;
+
+	if (whole!=0)
+		printf("Обыкновеная дробь: %d(%d/%d)\n", whole, aNOD, bNOD);
+	else
+		printf("Обыкновеная дробь: %d/%d\n", aNOD, bNOD);
+
 	return 0;
 }
 
-// ф-я выбор функции и вывод на экран
-void decimal_inversion()
+// выбор функции и вывод на экран
+int decimal_inversion()
 {
-	//fraction();
-	decimal();
+	printf("\t1. Перевести обычную дробь в десятичную\n");
+	printf("\t2. Перевести десятичную в обычную дробь\n");
+
+	int num;
+
+	printf("\tВыбор операции: ");
+	scanf("%d", &num);
+
+	switch(num)
+	{
+	case 1:
+		fraction(); break;
+	case 2:
+		decimal(); break;
+	default:
+		printf("Что топошло не так =(\n");
+		return 0;
+	}
+
+	return num;
 }
