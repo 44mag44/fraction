@@ -131,9 +131,9 @@ int decimal()
 	bNOD=b/nod;
 
 	if (whole!=0)
-		printf("Обыкновеная дробь: %d(%d/%d)\n", whole, aNOD, bNOD);
+		printf("\nОбыкновеная дробь: %d(%d/%d)\n", whole, aNOD, bNOD);
 	else
-		printf("Обыкновеная дробь: %d/%d\n", aNOD, bNOD);
+		printf("\nОбыкновеная дробь: %d/%d\n", aNOD, bNOD);
 
 	return 0;
 }
