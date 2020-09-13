@@ -53,7 +53,7 @@ int fraction()
 // вычисление кол-ва символов
 int size_fractional(int num) 
 {
-	int count=(num==0) ? 1 : ;
+	int count=(num==0) ? 1 : 0;
 
 	while (num!=0)
 	{
@@ -92,24 +92,33 @@ int decimal()
 {
 	printf("_\n");
 
-	int whole=0;	// целая часть 
-	char ch='.';	// знак дроби	
-	int frac=0; 	// дробная часть
+	int integral=0; // целая часть 
+	char ch='.'; // знак дроби	
+	int fractional=0; // дробная часть
 
+	// файл на запись дробной части
+	FILE *file;
+	char *name="file/fractional_numder.list";		
+	if((file=fopen(name, "w"))==NULL)
+	{
+		printf("Что то пошло не так =(");
+		return 0;	
+	}
 	printf("Десятичная дробь: ");
 
-	scanf("%d", &whole);
-	if(whole<0)
+	scanf("%d", &integral);
+	if(integral<0)
 		return 0;
 
 	scanf("%c", &ch);
 	if(!ch)
 		return 0;
-	
-	scanf("%d", &frac);
-	if(frac<0)
-		return 0;
-	
+
+	scanf("%d", &fractional);
+	// запись в файл дробной части
+	fprintf(file, "%d", fractional);
+
+	/*
 	int size=0;	// разиер долей
 	int a=0;		// числитель	
 	int b=0;		// знаменатель
@@ -129,11 +138,11 @@ int decimal()
 	aNOD=a/nod;
 	bNOD=b/nod;
 
-	if (whole!=0)
-		printf("\nОбыкновеная дробь: %d(%d/%d)\n", whole, aNOD, bNOD);
+	if (integral!=0)
+		printf("\nОбыкновеная дробь: %d(%d/%d)\n", integral, aNOD, bNOD);
 	else
 		printf("\nОбыкновеная дробь: %d/%d\n", aNOD, bNOD);
-
+	*/
 	return 0;
 }
 
