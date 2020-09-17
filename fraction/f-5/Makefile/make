@@ -1,0 +1,2 @@
+all:
+	gcc -Wall -o run.out main.c summa.c nok.c nod.c difference.c product.c quotient.c inversion_fractions.c inversion_fractions/common.c inversion_fractions/decimal.c

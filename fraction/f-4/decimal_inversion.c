@@ -8,6 +8,9 @@ struct fraction
 {
 	int a;
 	int b;
+	float decimal;
+	int integral;	
+
 } frac;
 
 // перевод обыкновенной дроби в десятичную
@@ -32,7 +35,6 @@ int fraction()
 
 	int nod=0; // nod
 	float aNOD=0, bNOD=0;	// НОД переменных a и b
-	float decimal=0;	// десятичная	дробь
 
 	// нахождение НОД
 	nod=NOD(frac.a, frac.b);
@@ -42,12 +44,12 @@ int fraction()
 	bNOD=frac.b/nod;
 
 	// десятичная дробь
-	decimal=aNOD/bNOD;
+	frac.decimal=aNOD/bNOD;
 
 	// вывод на экран
-	printf("\nДесятичная: %f\n", decimal);
+	printf("\nДесятичная: %f\n", frac.decimal);
 
-	return decimal;
+	return frac.decimal;
 }
 
 // вычисление кол-ва символов
@@ -92,57 +94,65 @@ int decimal()
 {
 	printf("_\n");
 
-	int integral=0; // целая часть 
-	char ch='.'; // знак дроби	
-	int fractional=0; // дробная часть
+	char ch=' '; // знак дроби
+	int fractional; // дробная часть
+	int null_count; // счетчик нулей 
+	
+	// ввод целой части
+	printf("Целая часть: ");	
+	scanf("%d", &frac.integral);
+	if(frac.integral<0)
+		return 0;
 
-	// файл на запись дробной части
-	FILE *file;
-	char *name="file/fractional_numder.list";		
-	if((file=fopen(name, "w"))==NULL)
+
+	// дробная часть - запись нулей
+	printf("Дробная часть начинается с нулей (y/n)?\n: ");
+	scanf("%s", &ch);
+	if(ch=='y')
 	{
-		printf("Что то пошло не так =(");
-		return 0;	
+		printf("Кол-во нулей: ");
+		scanf("%d", &null_count);
+
+		printf("Оканчание: ");
+		scanf("%d", &fractional);
+		if(fractional<=0)
+			return 0;
 	}
-	printf("Десятичная дробь: ");
+	else
+	{
+		printf("Оканчание: ");		
+		scanf("%d", &fractional);
+		if(fractional<=0)
+			return 0;
 
-	scanf("%d", &integral);
-	if(integral<0)
-		return 0;
+		null_count=0;
+	}
 
-	scanf("%c", &ch);
-	if(!ch)
-		return 0;
+	//printf("%d, %d\n", null_count, fractional);	
 
-	scanf("%d", &fractional);
-	// запись в файл дробной части
-	fprintf(file, "%d", fractional);
-
-	/*
 	int size=0;	// разиер долей
-	int a=0;		// числитель	
-	int b=0;		// знаменатель
 
-	size=size_fractional(frac);
-	a=frac;
-	b=koff(size);
+	size=size_fractional(fractional); // кол-во цифр в окончании
+	size+=null_count; // сумма нулей и оканчания
 
-	// nod
-	int nod;
+	frac.a=fractional; // числитель
+	frac.b=koff(size); // знаменатель
+
+	int nod; // nod
 	int aNOD=0;
 	int bNOD=0;
 	
-	nod=NOD(a, b);
+	nod=NOD(frac.a, frac.b);
 
 	// сокращаем a, b
-	aNOD=a/nod;
-	bNOD=b/nod;
+	aNOD=frac.a/nod;
+	bNOD=frac.b/nod;
 
-	if (integral!=0)
-		printf("\nОбыкновеная дробь: %d(%d/%d)\n", integral, aNOD, bNOD);
+	if(frac.integral==0)
+		printf("\nОбыкновеная дробь : %d/%d\n", aNOD, bNOD);
 	else
-		printf("\nОбыкновеная дробь: %d/%d\n", aNOD, bNOD);
-	*/
+		printf("\nОбыкновеная дробь : %d (%d/%d)\n", frac.integral, aNOD, bNOD);
+
 	return 0;
 }
 
