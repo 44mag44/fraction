@@ -7,6 +7,7 @@
 #include "header/quotient.h"					// частное
 #include "header/inversion_fractions.h"	// обращение дробей
 #include "header/ratio_proportion.h"		// пропорция
+#include "header/percent.h"					// процент
 
 int main() 
 {
@@ -20,6 +21,7 @@ int main()
 	printf("- 4. Деление дробей\n");
 	printf("- 5. Обращение дробей\n");
 	printf("- 6. Отношение и Пропорция\n");
+	printf("- 7. Процент\n");
 
 	// выбор пункта меню
 	int number=0;
@@ -39,6 +41,8 @@ int main()
 		case 5: inversion_fractions();
 			break;
 		case 6: ratio_proportion();
+			break;
+		case 7: percent();
 			break;
 		default:
 			printf ("Нет такого пункта\n");
